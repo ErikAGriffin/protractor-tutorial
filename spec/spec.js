@@ -2,7 +2,7 @@ describe('Protractor Demo App', function() {
 
   var firstNum = element(by.model('first'));
   var secondNum = element(by.model('second'));
-  var operator = element(by.model('operator'));
+  var operators = element.all(by.options('value for (key, value) in operators'));
   var goButton = element(by.id('gobutton'));
   var resultPane = element(by.binding('latest'));
 
@@ -25,13 +25,14 @@ describe('Protractor Demo App', function() {
   });
 
   it('should multiply one and two', function() {
-
     firstNum.sendKeys(1);
     secondNum.sendKeys(2);
-    element(by.cssContainingText('option','*')).click();
+    operators.get(3).click(); // '*'
     goButton.click();
     expect(resultPane.getText()).toEqual('2');
   });
+
+
 
 
 });
